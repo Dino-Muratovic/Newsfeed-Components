@@ -88,6 +88,8 @@ const data = [
   }
 ];
 
+  //console.log(data[0].title);  test
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -112,3 +114,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent (array){
+
+  //define and create new elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  // add classes if any
+  article.classList.add('article');
+  title.classList.add('title');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton', 'btn-expand', 'btn-normal');
+  
+
+  // append elements
+   article.append(title, date, paragraph1, paragraph2, paragraph3, expandButton);  //  console.log(article); -- testing if append worked on multiple variables
+  
+  //add text content
+  title.textContent = array.title;
+  date.textContent = array.date;
+  paragraph1.textContent = array.firstParagraph;
+  paragraph2.textContent = array.secondParagraph;
+  paragraph3.textContent = array.thirdParagraph;
+  expandButton.textContent = 'Expand here';
+
+   //event listeners
+    expandButton.addEventListener('click', function(event){
+    console.log(`This is a ${event.type}.`);
+    expandButton.classList.toggle('.expandButton');
+    
+  })
+
+  
+
+  return article;
+}
+
+
+// map through the array and pass in the info
+const articles = document.querySelector('.articles');
+console.log(articles);
+
+data.map(function(array){
+  console.log(`this is an individual`, array);  
+  // articles.append(createComponent(array.title, array.date, array.firstParagraph, array.secondParagraph, array.thirdParagraph ));
+  articles.append(createComponent(array));
+  return articles;
+})
+
+
+
