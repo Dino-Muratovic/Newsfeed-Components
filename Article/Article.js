@@ -166,7 +166,7 @@ function createComponent (object){
 
    //event listeners
     expandButton.addEventListener('click', function(event){
-    console.log(`This is a ${event.type}.`);
+    console.log(`This is a ${event.type} type event.`);
     article.classList.toggle('article-open');   
     
   })  

@@ -35,10 +35,10 @@ let menuItems = [
   
 */
 
-console.log(menuItems);
-menuItems.map(function(a){
-  console.log(`this is `, a);
-})
+// console.log(menuItems);
+// menuItems.map(function(a){
+//   console.log(`this is `, a);
+// })
 
 function createMenu (array){
 
@@ -53,10 +53,12 @@ function createMenu (array){
   menu.classList.add('menu');    
   
   //for Each through
-  let listedItems = document.createElement('li');
+  
   array.forEach(function(item){
-  listedItems.textContent = item;  
-  unorderedList.append(item);  
+  let listedItems = document.createElement('li');
+  listedItems.textContent = item;   
+  unorderedList.append(listedItems); 
+  console.log(`this is item`, listedItems); 
   })
 
   let menuButton = document.querySelector('.menu-button');
@@ -67,6 +69,8 @@ function createMenu (array){
 return menu; 
 }
 
+
+//append the .menu container to the header 
 document.querySelector('.header').appendChild(createMenu(menuItems));
 
 
