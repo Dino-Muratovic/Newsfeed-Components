@@ -85,10 +85,29 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Some dude',
+    date: 'Jan 2nd, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+
+  
 ];
 
-  //console.log(data[0].title);  test
+//  console.log(data[0].title);  
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -115,7 +134,7 @@ const data = [
 
 */
 
-function createComponent (array){
+function createComponent (object){
 
   //define and create new elements
   const article = document.createElement('div');
@@ -130,28 +149,27 @@ function createComponent (array){
   article.classList.add('article');
   title.classList.add('title');
   date.classList.add('date');
-  expandButton.classList.add('expandButton', 'btn-expand', 'btn-normal');
+  expandButton.classList.add('expandButton');
   
 
   // append elements
-   article.append(title, date, paragraph1, paragraph2, paragraph3, expandButton);  //  console.log(article); -- testing if append worked on multiple variables
+   article.append(title, date, paragraph1, paragraph2, paragraph3, expandButton);  
+   //  console.log(article); -- testing if append worked on multiple variables
   
   //add text content
-  title.textContent = array.title;
-  date.textContent = array.date;
-  paragraph1.textContent = array.firstParagraph;
-  paragraph2.textContent = array.secondParagraph;
-  paragraph3.textContent = array.thirdParagraph;
+  title.textContent = object.title;
+  date.textContent = object.date;
+  paragraph1.textContent = object.firstParagraph;
+  paragraph2.textContent = object.secondParagraph;
+  paragraph3.textContent = object.thirdParagraph;
   expandButton.textContent = 'Expand here';
 
    //event listeners
     expandButton.addEventListener('click', function(event){
     console.log(`This is a ${event.type}.`);
-    expandButton.classList.toggle('.expandButton');
+    article.classList.toggle('article-open');   
     
-  })
-
-  
+  })  
 
   return article;
 }
@@ -159,14 +177,15 @@ function createComponent (array){
 
 // map through the array and pass in the info
 const articles = document.querySelector('.articles');
-console.log(articles);
+// console.log(articles);
 
-data.map(function(array){
-  console.log(`this is an individual`, array);  
-  // articles.append(createComponent(array.title, array.date, array.firstParagraph, array.secondParagraph, array.thirdParagraph ));
-  articles.append(createComponent(array));
+data.map(function(object){
+  // console.log(`this is an individual`, object);  
+  articles.append(createComponent(object));
   return articles;
 })
+
+
 
 
 
